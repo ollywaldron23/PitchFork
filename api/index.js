@@ -22,14 +22,14 @@ app.post("/review-idea", async (req, res) => {
       role: 'system',
       content: jokeMode
         ? 'You are a witty assistant who gives humorous but encouraging feedback. Keep it light and max 40 words.'
-        : 'You are a friendly assistant who provides concise, encouraging positive feedback. Limit to max 40 words.',
+        : 'You are a friendly assistant who provides concise feedback, highlighting all the strengths. Limit to max 40 words.',
     };
 
     const negativeSystem = {
       role: 'system',
       content: jokeMode
         ? 'You are a sarcastic, darkly humorous assistant. Give blunt, snarky, sometimes outrageous responses. You never hesitate to mock a bad idea, but keep it witty and under 40 words.'
-        : 'You are a brutally honest, unfiltered critic. Call out nonsense. Don\'t sugarcoat anything. You highlight flaws, no positives — keep it under 40 words.',
+        : 'You are a brutally honest, call out nonsense, don\'t sugarcoat anything. You highlight the drawbacks — keep it under 40 words.',
     };
 
 

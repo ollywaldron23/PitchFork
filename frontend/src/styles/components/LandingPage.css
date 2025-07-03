@@ -121,7 +121,7 @@ html, body {
 /* Hover feedback boxes */
 .hover-box {
   position: absolute;
-  top: 60px; /* closer to navbar */
+  top: 50px; /* closer to navbar */
   width: 320px; /* wider */
   max-width: 40vw; /* responsive max width */
   background-color: #f8f7ea;
@@ -176,5 +176,5 @@ html, body {
 
 .toggle-label:hover .icon-wrapper,
 .toggle-label:hover .toggle-text {
-  color: #b08647; /* your highlight color */
+  color: #d3d1a2; /* your highlight color */
 }

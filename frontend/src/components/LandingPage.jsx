@@ -29,7 +29,6 @@ export default function LandingPage() {
     };
 
     const handleSubmit = async () => {
-      alert('Pitched!');
       if (!idea) return
 
         setLoading(true)
@@ -40,13 +39,12 @@ export default function LandingPage() {
           body: JSON.stringify({ idea, jokeMode }),
           })
 
-        
-
         if (!response.ok) {
           throw new Error('Failed to fetch review')
         }
 
         const data = await response.json()
+        alert('Pitched!');
         setPositiveFeedback(data.positive)
         setNegativeFeedback(data.negative)
       } catch (error) {
