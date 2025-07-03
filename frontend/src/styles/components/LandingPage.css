@@ -148,3 +148,33 @@ html, body {
   align-items: center;
   gap: 12px;
 }
+
+.joke-mode-toggle {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.toggle-label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  user-select: none;
+}
+
+.toggle-checkbox {
+  display: none; /* hide native checkbox */
+}
+
+.icon-wrapper {
+  font-size: 1.6rem;
+  color: black;
+}
+
+.toggle-label:hover .icon-wrapper,
+.toggle-label:hover .toggle-text {
+  color: #b08647; /* your highlight color */
+}

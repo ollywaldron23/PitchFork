@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import '../styles/components/LandingPage.css';
+import { FaRegSmile } from "react-icons/fa";
+import { FaRegFaceLaughSquint } from "react-icons/fa6";
 
 export default function LandingPage() {
   const [idea, setIdea] = useState('');
@@ -8,6 +10,7 @@ export default function LandingPage() {
   const [loading, setLoading] = useState(false);
   const [positiveFeedback, setPositiveFeedback] = useState('');
   const [negativeFeedback, setNegativeFeedback] = useState('');
+  const [jokeMode, setJokeMode] = useState(false);
 
   const backgroundImage =
     !ideaSubmitted
@@ -19,8 +22,10 @@ export default function LandingPage() {
       : '/main.png';
 
     const handleReset = () => {
-        setIdea('');
-        setIdeaSubmitted(false);
+      setIdea('');
+      setIdeaSubmitted(false);
+      setPositiveFeedback('');
+      setNegativeFeedback('');
     };
 
     const handleSubmit = async () => {
@@ -32,7 +37,7 @@ export default function LandingPage() {
         const response = await fetch('http://localhost:3000/review-idea', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ idea }),
+          body: JSON.stringify({ idea, jokeMode }),
           })
 
         
@@ -94,6 +99,20 @@ export default function LandingPage() {
                 rows={5}  
                 style={{ resize: 'none' }}
             ></textarea>
+            <div className="joke-mode-toggle">
+              <label className="toggle-label">
+                <input
+                  type="checkbox"
+                  checked={jokeMode}
+                  onChange={(e) => setJokeMode(e.target.checked)}
+                  className="toggle-checkbox"
+                />
+                <span className="icon-wrapper">
+                    {jokeMode ? <FaRegFaceLaughSquint /> : <FaRegSmile />}
+                </span>
+                <span className="toggle-text">{jokeMode ? 'fun mode' : 'serious mode'}</span>
+              </label>
+              </div>
             <div className="button-group">
                 <button onClick={handleSubmit}>pitch</button>
                 <button onClick={handleReset} className="reset-button">reset</button>

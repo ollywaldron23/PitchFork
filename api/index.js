@@ -12,33 +12,40 @@ const openai = new OpenAI({
 });
 
 app.post("/review-idea", async (req, res) => {
-  const { idea } = req.body;
+  const { idea, jokeMode } = req.body;
+
   if (!idea) return res.status(400).json({ error: "Idea is required" });
 
   try {
+
     const positiveSystem = {
-      role: "system",
-      content:
-        "You are a friendly assistant who provides concise, encouraging positive feedback. Limit to about 50 words.",
+      role: 'system',
+      content: jokeMode
+        ? 'You are a witty assistant who gives humorous but encouraging feedback. Keep it light and max 40 words.'
+        : 'You are a friendly assistant who provides concise, encouraging positive feedback. Limit to max 40 words.',
     };
+
     const negativeSystem = {
-      role: "system",
-      content:
-        "You are a negative assistant who provides concise, constructive negative feedback. Limit to about 50 words.",
+      role: 'system',
+      content: jokeMode
+        ? 'You are a sarcastic, darkly humorous assistant. Give blunt, snarky, sometimes outrageous responses. You never hesitate to mock a bad idea, but keep it witty and under 40 words.'
+        : 'You are a brutally honest, unfiltered critic. Call out nonsense. Don\'t sugarcoat anything. You highlight flaws, no positives — keep it under 40 words.',
     };
+
+
     const userMessage = { role: "user", content: `Review this idea: "${idea}"` };
 
     const [positiveResponse, negativeResponse] = await Promise.all([
       openai.chat.completions.create({
         model: "gpt-4o-mini",
         messages: [positiveSystem, userMessage],
-        max_tokens: 60,
+        max_tokens: 50,
         temperature: 0.7,
       }),
       openai.chat.completions.create({
         model: "gpt-4o-mini",
         messages: [negativeSystem, userMessage],
-        max_tokens: 60,
+        max_tokens: 50,
         temperature: 0.7,
       }),
     ]);
