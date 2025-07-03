@@ -5,7 +5,6 @@
   box-sizing: border-box;
 }
 
-/* Reset and prevent scrolling */
 html, body {
   margin: 0;
   padding: 0;
@@ -14,7 +13,6 @@ html, body {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Background and main container */
 .page-wrapper {
   height: 100vh;
   width: 100vw;
@@ -97,15 +95,15 @@ html, body {
 
 .center-input textarea:focus {
   outline: none;
-  border-color: #c2c099;
-  box-shadow: 0 0 5px #c2c09988;
+  border-color: #b08647;
+  box-shadow: 0 0 5px #b0864788;
 }
 
 /* Button Styling */
 .center-input button {
   font-size: 1rem;
   font-weight: 500;
-  background-color: #d3d1a2;
+  background-color: #e0ab5d;
   color: #000;
   border: none;
   border-radius: 8px;
@@ -115,7 +113,7 @@ html, body {
 }
 
 .center-input button:hover {
-  background-color: #bab88b;
+  background-color: #b08647;
 }
 
 /* Hover feedback boxes */
@@ -176,5 +174,5 @@ html, body {
 
 .toggle-label:hover .icon-wrapper,
 .toggle-label:hover .toggle-text {
-  color: #d3d1a2; /* your highlight color */
+  color: #b08647; /* your highlight color */
 }

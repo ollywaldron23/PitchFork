@@ -23,7 +23,7 @@ const Navbar = () => {
           </div>
         </div>
       )}
-      <h1>PitchFork</h1>
+      <img src="/header.png" alt="PitchFork Logo" className="navbar-logo" />
     </div>
   );
 };
