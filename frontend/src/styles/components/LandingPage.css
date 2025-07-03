@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+  font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
+}
+
+/* Reset and prevent scrolling */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* Prevent page scroll */
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Background and main container */
+.page-wrapper {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  transition: background-image 0.3s ease-in-out;
+}
+
+/* Content area below navbar */
+.content-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  margin-top: 60px; /* height of navbar */
+  height: calc(100vh - 60px);
+  padding: 1rem;
+  z-index: 20;
+  overflow: hidden; /* avoid internal scroll */
+  user-select: none;
+}
+
+/* Hover zones that don’t cover center input */
+.hover-zone {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background-color: transparent;
+  z-index: 15;
+  cursor: pointer;
+}
+
+/* Left hover zone from left edge to center minus 200px */
+.left-zone {
+  left: 0;
+  width: calc(50% - 200px);
+}
+
+/* Right hover zone from center plus 200px to right edge */
+.right-zone {
+  right: 0;
+  width: calc(50% - 200px);
+}
+
+/* Center input box */
+.center-input {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  background: transparent;
+  padding: 24px;
+  border-radius: 10px;
+  text-align: center;
+  z-index: 25;
+  user-select: text;
+  margin-top: 60px;
+  color: #222;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Textarea Input */
+.center-input textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  margin-bottom: 1.2rem;
+  border: 1.5px solid #000000;
+  border-radius: 8px;
+  background-color: #f8f7ea;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: inherit;
+  color: #111;
+  min-height: 100px;
+  resize: none;
+}
+
+.center-input textarea:focus {
+  outline: none;
+  border-color: #c2c099;
+  box-shadow: 0 0 5px #c2c09988;
+}
+
+/* Button Styling */
+.center-input button {
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #d3d1a2;
+  color: #000;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  border: 2px solid black;
+}
+
+.center-input button:hover {
+  background-color: #bab88b;
+}
+
+/* Hover feedback boxes */
+.hover-box {
+  position: absolute;
+  top: 60px; /* closer to navbar */
+  width: 320px; /* wider */
+  max-width: 40vw; /* responsive max width */
+  background-color: #f8f7ea;
+  padding: 16px;
+  border-radius: 8px;
+  box-shadow: 0 0 12px #0004;
+  z-index: 40;
+  user-select: none;
+  color: black;
+  border: 1.5px solid #000000;
+}
+
+.left-hover {
+  left: 60px;
+}
+
+.right-hover {
+  right: 60px;
+}
+
+.button-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
