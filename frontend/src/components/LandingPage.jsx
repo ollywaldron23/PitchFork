@@ -7,7 +7,6 @@ export default function LandingPage() {
   const [idea, setIdea] = useState('');
   const [ideaSubmitted, setIdeaSubmitted] = useState(false);
   const [hoverSide, setHoverSide] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [positiveFeedback, setPositiveFeedback] = useState('');
   const [negativeFeedback, setNegativeFeedback] = useState('');
   const [jokeMode, setJokeMode] = useState(false);
@@ -29,9 +28,16 @@ export default function LandingPage() {
     };
 
     const handleSubmit = async () => {
-      if (!idea) return
-
-        setLoading(true)
+      if (!idea.trim()) {
+        alert('Please enter an idea before pitching!');
+        return;
+      } else if (idea.length < 50) {
+        alert('Your idea is too short! Please provide more details.');
+        return;
+      } else if (idea.length > 500) {
+        alert('Your idea is too long! Please shorten it to under 500 characters.');
+        return;
+      }
       try {
         const response = await fetch('http://localhost:3000/review-idea', {
           method: 'POST',
@@ -51,7 +57,6 @@ export default function LandingPage() {
         console.error(error)
         // handle error UI here
       } finally {
-        setLoading(false)
         setIdeaSubmitted(true);
       }
     }
