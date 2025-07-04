@@ -4,7 +4,6 @@ import { FaQuestionCircle } from 'react-icons/fa';
 import { useState } from 'react';
 
 const Navbar = () => {
-
   const [showHelp, setShowHelp] = useState(false);
 
   return (
@@ -15,11 +14,21 @@ const Navbar = () => {
       {showHelp && (
         <div className="help-modal">
           <div className="help-content">
-            <button className="close-button" aria-label='Close help modal' onClick={() => setShowHelp(false)}>×</button>
-              <h2>What is PitchFork?</h2>
-              <p>
-              Pitchfork is an AI idea reviewing tool. Hover over the Angel and Devil icons to get their perspectives on your idea. The Angel gives you encouraging, positive feedback, while the Devil challenges your idea with honest, critical insights. Switch on Joke Mode for more light-hearted responses!
-              </p>
+            <button
+              className="close-button"
+              aria-label="Close help modal"
+              onClick={() => setShowHelp(false)}
+            >
+              ×
+            </button>
+            <h2>What is PitchFork?</h2>
+            <p>
+              Pitchfork is an AI idea reviewing tool. Hover over the Angel and
+              Devil icons to get their perspectives on your idea. The Angel
+              gives you encouraging, positive feedback, while the Devil
+              challenges your idea with honest, critical insights. Switch on
+              Joke Mode for more light-hearted responses!
+            </p>
           </div>
         </div>
       )}

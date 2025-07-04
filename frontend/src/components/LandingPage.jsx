@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../styles/components/LandingPage.css';
-import { FaRegSmile } from "react-icons/fa";
-import { FaRegFaceLaughSquint } from "react-icons/fa6";
+import { FaRegSmile } from 'react-icons/fa';
+import { FaRegFaceLaughSquint } from 'react-icons/fa6';
 
 export default function LandingPage() {
   const [idea, setIdea] = useState('');
@@ -11,55 +11,56 @@ export default function LandingPage() {
   const [negativeFeedback, setNegativeFeedback] = useState('');
   const [jokeMode, setJokeMode] = useState(false);
 
-  const backgroundImage =
-    !ideaSubmitted
-      ? '/main.png'
-      : hoverSide === 'angel'
+  const backgroundImage = !ideaSubmitted
+    ? '/main.png'
+    : hoverSide === 'angel'
       ? '/angelhover.png'
       : hoverSide === 'devil'
-      ? '/devilhover.png'
-      : '/main.png';
+        ? '/devilhover.png'
+        : '/main.png';
 
-    const handleReset = () => {
-      setIdea('');
-      setIdeaSubmitted(false);
-      setPositiveFeedback('');
-      setNegativeFeedback('');
-    };
+  const handleReset = () => {
+    setIdea('');
+    setIdeaSubmitted(false);
+    setPositiveFeedback('');
+    setNegativeFeedback('');
+  };
 
-    const handleSubmit = async () => {
-      if (!idea.trim()) {
-        alert('Please enter an idea before pitching!');
-        return;
-      } else if (idea.length < 50) {
-        alert('Your idea is too short! Please provide more details.');
-        return;
-      } else if (idea.length > 500) {
-        alert('Your idea is too long! Please shorten it to under 500 characters.');
-        return;
-      }
-      try {
-        const response = await fetch('http://localhost:3000/review-idea', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ idea, jokeMode }),
-          })
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch review')
-        }
-
-        const data = await response.json()
-        alert('Pitched!');
-        setPositiveFeedback(data.positive)
-        setNegativeFeedback(data.negative)
-      } catch (error) {
-        console.error(error)
-        // handle error UI here
-      } finally {
-        setIdeaSubmitted(true);
-      }
+  const handleSubmit = async () => {
+    if (!idea.trim()) {
+      alert('Please enter an idea before pitching!');
+      return;
+    } else if (idea.length < 50) {
+      alert('Your idea is too short! Please provide more details.');
+      return;
+    } else if (idea.length > 500) {
+      alert(
+        'Your idea is too long! Please shorten it to under 500 characters.'
+      );
+      return;
     }
+    try {
+      const response = await fetch('http://localhost:3000/review-idea', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ idea, jokeMode }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch review');
+      }
+
+      const data = await response.json();
+      alert('Pitched!');
+      setPositiveFeedback(data.positive);
+      setNegativeFeedback(data.negative);
+    } catch (error) {
+      console.error(error);
+      // handle error UI here
+    } finally {
+      setIdeaSubmitted(true);
+    }
+  };
 
   return (
     <div
@@ -85,47 +86,48 @@ export default function LandingPage() {
 
         {/* Angel feedback box on left */}
         {ideaSubmitted && hoverSide === 'angel' && (
-            <div className="hover-box left-hover">
-                <p>{positiveFeedback}</p>
-            </div>
+          <div className="hover-box left-hover">
+            <p>{positiveFeedback}</p>
+          </div>
         )}
 
-        <div
-          className="center-input"
-          onMouseEnter={() => setHoverSide(null)}
-        >
+        <div className="center-input" onMouseEnter={() => setHoverSide(null)}>
           <p>Got an idea? Let's see what they think!</p>
           <textarea
             placeholder="Type your idea here..."
-                value={idea}
-                onChange={(e) => setIdea(e.target.value)}
-                rows={5}  
-                style={{ resize: 'none' }}
-            ></textarea>
-            <div className="joke-mode-toggle">
-              <label className="toggle-label">
-                <input
-                  type="checkbox"
-                  checked={jokeMode}
-                  onChange={(e) => setJokeMode(e.target.checked)}
-                  className="toggle-checkbox"
-                />
-                <span className="icon-wrapper">
-                    {jokeMode ? <FaRegFaceLaughSquint /> : <FaRegSmile />}
-                </span>
-                <span className="toggle-text">{jokeMode ? 'fun mode' : 'serious mode'}</span>
-              </label>
-              </div>
-            <div className="button-group">
-                <button onClick={handleSubmit}>pitch</button>
-                <button onClick={handleReset} className="reset-button">reset</button>
-            </div>
+            value={idea}
+            onChange={(e) => setIdea(e.target.value)}
+            rows={5}
+            style={{ resize: 'none' }}
+          ></textarea>
+          <div className="joke-mode-toggle">
+            <label className="toggle-label">
+              <input
+                type="checkbox"
+                checked={jokeMode}
+                onChange={(e) => setJokeMode(e.target.checked)}
+                className="toggle-checkbox"
+              />
+              <span className="icon-wrapper">
+                {jokeMode ? <FaRegFaceLaughSquint /> : <FaRegSmile />}
+              </span>
+              <span className="toggle-text">
+                {jokeMode ? 'fun mode' : 'serious mode'}
+              </span>
+            </label>
+          </div>
+          <div className="button-group">
+            <button onClick={handleSubmit}>pitch</button>
+            <button onClick={handleReset} className="reset-button">
+              reset
+            </button>
+          </div>
         </div>
         {/* Devil feedback box on right */}
         {ideaSubmitted && hoverSide === 'devil' && (
-            <div className="hover-box right-hover">
-                <p>{negativeFeedback}</p>
-            </div>
+          <div className="hover-box right-hover">
+            <p>{negativeFeedback}</p>
+          </div>
         )}
       </div>
     </div>

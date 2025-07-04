@@ -1,7 +1,7 @@
-import 'dotenv/config'
-import express from "express";
-import cors from "cors";
-import OpenAI from "openai";
+import 'dotenv/config';
+import express from 'express';
+import cors from 'cors';
+import OpenAI from 'openai';
 
 const app = express();
 app.use(cors());
@@ -11,13 +11,12 @@ const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
-app.post("/review-idea", async (req, res) => {
+app.post('/review-idea', async (req, res) => {
   const { idea, jokeMode } = req.body;
 
-  if (!idea) return res.status(400).json({ error: "Idea is required" });
+  if (!idea) return res.status(400).json({ error: 'Idea is required' });
 
   try {
-
     const positiveSystem = {
       role: 'system',
       content: jokeMode
@@ -29,21 +28,23 @@ app.post("/review-idea", async (req, res) => {
       role: 'system',
       content: jokeMode
         ? 'You are a sarcastic, darkly humorous assistant. Give blunt, snarky, sometimes outrageous responses. You never hesitate to mock a bad idea, but keep it witty and under 40 words.'
-        : 'You are a brutally honest, call out nonsense, don\'t sugarcoat anything. You highlight the drawbacks — keep it under 40 words.',
+        : "You are a brutally honest, call out nonsense, don't sugarcoat anything. You highlight the drawbacks — keep it under 40 words.",
     };
 
-
-    const userMessage = { role: "user", content: `Review this idea: "${idea}"` };
+    const userMessage = {
+      role: 'user',
+      content: `Review this idea: "${idea}"`,
+    };
 
     const [positiveResponse, negativeResponse] = await Promise.all([
       openai.chat.completions.create({
-        model: "gpt-4o-mini",
+        model: 'gpt-4o-mini',
         messages: [positiveSystem, userMessage],
         max_tokens: 50,
         temperature: 0.7,
       }),
       openai.chat.completions.create({
-        model: "gpt-4o-mini",
+        model: 'gpt-4o-mini',
         messages: [negativeSystem, userMessage],
         max_tokens: 50,
         temperature: 0.7,
@@ -56,7 +57,7 @@ app.post("/review-idea", async (req, res) => {
     });
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "OpenAI request failed" });
+    res.status(500).json({ error: 'OpenAI request failed' });
   }
 });
 

@@ -6,7 +6,9 @@ import Navbar from '../../../frontend/src/components/Navbar';
 describe('Navbar component', () => {
   it('renders navbar and logo image', () => {
     render(<Navbar />);
-    expect(screen.getByRole('img', { name: /pitchfork logo/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('img', { name: /pitchfork logo/i })
+    ).toBeInTheDocument();
   });
 
   it('help modal is hidden by default', () => {
@@ -25,7 +27,9 @@ describe('Navbar component', () => {
     const modalHeading = await screen.findByText(/what is pitchfork/i);
     expect(modalHeading).toBeInTheDocument();
 
-    const closeButton = await screen.findByRole('button', { name: /close help modal/i });
+    const closeButton = await screen.findByRole('button', {
+      name: /close help modal/i,
+    });
 
     expect(closeButton).toBeInTheDocument();
 

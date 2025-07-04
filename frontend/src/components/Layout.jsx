@@ -6,9 +6,7 @@ const Layout = ({ children }) => {
   return (
     <div className="layout-wrapper">
       <Navbar />
-      <main className="main-view">
-        {children}
-      </main>
+      <main className="main-view">{children}</main>
     </div>
   );
 };
