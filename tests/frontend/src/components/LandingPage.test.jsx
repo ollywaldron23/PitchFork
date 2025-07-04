@@ -1,5 +1,5 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import LandingPage from '../../../frontend/src/components/LandingPage';
+import LandingPage from '../../../../frontend/src/components/LandingPage';
 import { vi } from 'vitest';
 
 describe('LandingPage component', () => {

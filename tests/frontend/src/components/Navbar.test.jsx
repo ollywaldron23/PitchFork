@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import Navbar from '../../../frontend/src/components/Navbar';
+import Navbar from '../../../../frontend/src/components/Navbar';
 
 describe('Navbar component', () => {
   it('renders navbar and logo image', () => {

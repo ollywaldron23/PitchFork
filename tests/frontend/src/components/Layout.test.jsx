@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
-import Layout from '../../../frontend/src/components/Layout';
+import Layout from '../../../../frontend/src/components/Layout';
 
 // Mock Navbar so the test stays simple and focused
-vi.mock('../../../frontend/src/components/Navbar', () => ({
+vi.mock('../../../../frontend/src/components/Navbar', () => ({
   default: () => <div data-testid="navbar" />,
 }));
 
